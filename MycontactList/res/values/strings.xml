@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MycontactList</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_contact_list">ContactListActivity</string>
+    <string name="title_activity_contact_map">ContactMapActivity</string>
+    <string name="title_activity_contact_settings">ContactSettingsActivity</string>
+
+</resources>
