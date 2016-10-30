@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Tip Calculator</string>
+    <string name="bill_text_view">Enter Bill Amount :</string>
+    <string name="bill_edit_text"></string>
+    <string name="tip_text_view">Enter Tip Percent :</string>
+    <string name="tip_edit_text"></string>
+	<string name="tip_result">Tip Value :</string>
+	<string name="zero"></string>
+	<string name="total_result">Total Amount :</string>
+	<string name="Calculate">Calculate</string>
+	<string name="Reset">Reset</string>
+	<string name="action_settings">Settings</string>
+</resources>

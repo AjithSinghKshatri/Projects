@@ -1,0 +1,104 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.tipcalculator.TipCalculator" >
+
+    <TextView
+            android:id="@+id/billTextView"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentStart="true"
+	        android:layout_alignParentTop="true"
+	        android:layout_marginStart="6dp"
+	        android:layout_marginTop="6dp"
+            android:text="@string/bill_text_view" />
+    
+    <EditText
+	        android:id="@+id/billEditText"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginStart="16dp"
+	        android:layout_toEndOf="@+id/billTextView"
+	        android:ems="5"
+	        android:inputType="numberDecimal"
+	        android:text="@string/bill_edit_text" />
+
+     <TextView
+         android:id="@+id/tipTextView"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignStart="@+id/billTextView"
+         android:layout_below="@+id/billEditText"
+         android:layout_marginTop="16dp"
+         android:text="@string/tip_text_view" />
+     
+     <EditText
+         android:id="@+id/tipEditText"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignEnd="@+id/billEditText"
+         android:layout_below="@+id/billEditText"
+         android:layout_marginStart="16dp"      
+         android:layout_toEndOf="@+id/billTextView"
+         android:ems="5"
+         android:inputType="numberDecimal"
+         android:text="@string/tip_edit_text" />
+
+     <TextView
+         android:id="@+id/TiptextView"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignStart="@+id/tipTextView"
+         android:layout_below="@+id/tipEditText"
+         android:layout_marginTop="22dp"
+         android:text="@string/tip_result" />
+
+     <TextView
+         android:id="@+id/TotaltextView"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignStart="@+id/TiptextView"
+         android:layout_below="@+id/TiptextView"
+         android:layout_marginTop="15dp"
+         android:text="@string/total_result" />
+
+     <Button
+         android:id="@+id/Calculatebutton"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_centerHorizontal="true"
+         android:layout_centerVertical="true"
+         android:text="@string/Calculate" />
+
+     <Button
+         android:id="@+id/Resetbutton"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/Calculatebutton"
+         android:layout_centerHorizontal="true"
+         android:layout_marginTop="22dp"
+         android:text="@string/Reset" />
+
+     <TextView
+         android:id="@+id/Resulttip"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBaseline="@+id/TiptextView"
+         android:layout_alignBottom="@+id/TiptextView"
+         android:layout_alignStart="@+id/tipEditText"
+         android:text="@string/zero" />
+
+     <TextView
+         android:id="@+id/Resultamount"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBottom="@+id/TotaltextView"
+         android:layout_alignStart="@+id/Resulttip"
+         android:text="@string/zero" />
+	   
+</RelativeLayout>
