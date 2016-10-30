@@ -1,0 +1,149 @@
+Create table Language(
+LanguageID VARCHAR2(12) NOT NULL,
+LanguageName VARCHAR2(10) NOT NULL,
+CONSTRAINT LangID_PK PRIMARY KEY(LanguageID));
+
+
+
+Create table CustomerType(
+CustomerTypeID VARCHAR2(12) NOT NULL,
+CustomerTypeName VARCHAR2(12) NOT NULL,
+CONSTRAINT CustTyID_PK PRIMARY KEY(CustomerTypeID)
+);
+
+
+
+
+Create table Customer(
+CustomerID NUMBER(15,0) NOT NULL,
+FirstName VARCHAR2(15) NOT NULL,
+LastName VARCHAR2(15) NOT NULL,
+MiddleName VARCHAR2(15),
+CustomerTypeID VARCHAR2(12) ,
+CustomerStartDate DATE,
+CreatedDate DATE,
+CreatedBy VARCHAR2(15) NOT NULL,
+ChangedDate DATE,
+ChangedBy VARCHAR2(15) NOT NULL,
+LanguageID VARCHAR2(12) NOT NULL UNIQUE,
+CONSTRAINT Cust_ID PRIMARY KEY(CustomerID),
+CONSTRAINT LangID_FK FOREIGN KEY(LanguageID) REFERENCES Language(LanguageID),
+CONSTRAINT CustTyID_FK FOREIGN KEY(CustomerTypeID) REFERENCES CustomerType(CustomerTypeID)
+);
+
+
+
+
+create table Account(
+AccountNumber Number(15,0) NOT NULL, 
+AccountBillingStartDate DATE NOT NULL,
+NextBillDate DATE NOT  NULL,
+AccountBillingStatus VARCHAR2(10) NOT NULL,
+AccountLastBillDate DATE NOT NULL,
+CustomerID NUMBER(15,0) NOT NULL,
+CONSTRAINT AccNum_PK PRIMARY KEY(AccountNumber),
+CONSTRAINT CustIS_FK FOREIGN KEY(CustomerID) REFERENCES Customer(CustomerID)
+);
+
+
+
+
+Create table Product(
+ProductID VARCHAR2(12) NOT NULL,
+ProductName VARCHAR2(12) NOT NULL,
+ProductTierCap VARCHAR2(12),
+ProductRate VARCHAR2(12) NOT NULL,
+ProdcutSalesStartDate DATE NOT NULL,
+ProdcutSalesEndDate DATE NOT NULL,
+CONSTRAINT ProdID_PK PRIMARY KEY(ProductID)
+);
+
+
+
+Create table RatingPlan(
+RatingPlanID VARCHAR2(12) NOT NULL,
+RatingPlanName VARCHAR2(12) NOT NULL,
+RatingPlanVAlue VARCHAR2(12) NOT NULL,
+RatingPlanStartDate DATE NOT NULL,
+RatingPlanEndDate DATE NOT NULL,
+CONSTRAINT RatPlanID_PK PRIMARY KEY (RatingPlanID)
+);
+
+
+
+
+Create table Connection(
+ConnectionID VARCHAR2(12) NOT NULL,
+ConnectionStatus VARCHAR2(12) NOT NULL,
+ConnectionStartDate DATE NOT NULL,
+ConnectionEndDate DATE NOT NULL,
+AccountNumber Number(15,0) NOT NULL,
+ProductID VARCHAR2(12) NOT NULL,
+CONSTRAINT ConnID_PK PRIMARY KEY (ConnectionID),
+CONSTRAINT AcctNum_FK FOREIGN KEY(AccountNumber) REFERENCES Account(AccountNumber),
+CONSTRAINT ProdID_FK FOREIGN KEY(ProductID) REFERENCES Product(ProductID)
+);
+
+
+
+Create table CustomerStatement(
+CustomerStatementID VARCHAR2(12) NOT NULL,
+StatementDate DATE,
+StatementBilledAmount NUMBER(15,0) NOT NULL,
+StateDueDate DATE,
+LangCode VARCHAR2(12),
+CustomerID NUMBER(15,0),
+AccountNumber NUMBER(15,0),
+CONSTRAINT CustStID_PK PRIMARY KEY (CustomerStatementID),
+CONSTRAINT CustIDSt_FK FOREIGN KEY(CustomerID) REFERENCES Customer(CustomerID),
+CONSTRAINT AcctNumSt_FK FOREIGN KEY(AccountNumber) REFERENCES Account(AccountNUmber)
+);
+
+
+
+
+Create table TransactionMasterRecord(
+TransactionID NUMBER(15,0) NOT NULL,
+TransactionCost Number(10,0) NOT NULL,
+TransactionDate DATE,
+ConnectionID VARCHAR2(12),
+CustomerStatementID VARCHAR2(12),
+AccountNumber NUMBER(15,0),
+CONSTRAINT TranID_PK PRIMARY KEY (TransactionID),
+CONSTRAINT ConnIDTran_FK FOREIGN KEY (ConnectionID) REFERENCES Connection(ConnectionID),
+CONSTRAINT CustStTranID_FK FOREIGN KEY (CustomerStatementID) REFERENCES CustomerStatement(CustomerStatementID),
+CONSTRAINT AcctNumTran_FK FOREIGN KEY (AccountNumber) REFERENCES Account(AccountNumber)
+);
+
+
+
+create table CustomerEquipment(
+EquipmentID VARCHAR2(12) NOT NULL,
+EquipmentDescription Varchar2(15),
+EquipStartDate DATE NOT NULL,
+EquipEndDate DATE NOT NULL,
+RatingID VARCHAR2(8),
+EquipmentSerialNumber NUMBER(15,0),
+ConnectionID VARCHAR2(12),
+RatingPlanID VARCHAR2(12),
+CONSTRAINT EquipID_PK PRIMARY KEY (EquipmentID),
+CONSTRAINT ConnEquipID_FK FOREIGN KEY (ConnectionID) REFERENCES Connection(ConnectionID),
+CONSTRAINT RatPlEquipID_FK FOREIGN KEY (RatingPlanID) REFERENCES RatingPlan(RatingPlanID)
+);
+
+
+
+Create table DailyEventsRecord(
+DailyEventRecordID VARCHAR2(12) NOT NULL,
+DateConsumed DATE,
+EventStartDateAndTIme TIMESTAMP,
+EventEndDateAndTime TIMESTAMP,
+TransactionID NUMBER(15,0),
+EquipmentID VARCHAR2(12),
+CONSTRAINT DailyID_PK PRIMARY KEY (DailyEventRecordID),
+CONSTRAINT TranDailyID_FK FOREIGN KEY(TransactionID) REFERENCES TransactionMasterRecord(TransactionID),
+CONSTRAINT EquipDailyID_FK FOREIGN KEY(EquipmentID) REFERENCES CustomerEquipment(EquipmentID)
+);
+
+
+
